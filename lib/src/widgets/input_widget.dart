@@ -11,6 +11,7 @@ import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util
 import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
+import 'package:intl_phone_number_input/src/utils/widget_view.dart';
 import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
 
 /// Enum for [SelectorButton] types.
