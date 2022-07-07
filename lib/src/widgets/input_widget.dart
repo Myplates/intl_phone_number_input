@@ -320,18 +320,18 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   String? validator(String? value) {
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (isValid && widget.errorMessage != null) {
-        setState(() {
-          this.selectorButtonBottomPadding =
-              widget.selectorButtonOnErrorPadding;
-        });
-      } else {
-        setState(() {
-          this.selectorButtonBottomPadding = 0;
-        });
-      }
-    });
+
+    // Patch: Prevent infinite update of the widget;
+    var currentPadding = this.selectorButtonBottomPadding;
+    double nextPadding = isValid && widget.errorMessage != null
+        ? widget.selectorButtonOnErrorPadding
+        : 0;
+
+    if (currentPadding != nextPadding) {
+      setState(() {
+        this.selectorButtonBottomPadding = nextPadding;
+      });
+    }
 
     return isValid ? widget.errorMessage : null;
   }
